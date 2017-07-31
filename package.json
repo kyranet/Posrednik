@@ -1,0 +1,15 @@
+{
+  "name": "posrednik",
+  "version": "1.0.0",
+  "description": "Moderation bot",
+  "main": "posrednik.js",
+  "scripts": {
+    "test": "node posrednik.js"
+  },
+  "author": "Kyra",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "github:hydrabolt/discord.js",
+    "klasa": "github:dirigeants/klasa"
+  }
+}
