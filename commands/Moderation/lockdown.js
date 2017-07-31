@@ -7,6 +7,7 @@ module.exports = class extends Command {
             name: 'lockdown',
             permLevel: 2,
             botPerms: ['MANAGE_CHANNELS', 'MANAGE_ROLES'],
+            runIn: ['text'],
 
             description: 'Lock/unlock the selected channel.',
             usage: '<channel:channel>'

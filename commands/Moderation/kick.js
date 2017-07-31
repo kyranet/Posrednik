@@ -8,6 +8,7 @@ module.exports = class extends Command {
             name: 'kick',
             permLevel: 2,
             botPerms: ['KICK_MEMBERS'],
+            runIn: ['text'],
 
             description: 'Kicks the mentioned member.',
             usage: '<user:member> [reason:string] [...]',

@@ -5,12 +5,12 @@ module.exports = class extends Command {
 
     constructor(...args) {
         super(...args, {
-            name: 'ban',
+            name: 'softban',
             permLevel: 2,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
 
-            description: 'Bans the mentioned member.',
+            description: 'Softbans the mentioned member.',
             usage: '<user:user> [reason:string] [...]',
             usageDelim: ' '
         });
@@ -28,18 +28,19 @@ module.exports = class extends Command {
             return msg.send(`Dear ${msg.author}, I am not able to ban this member, sorry.`);
         }
 
-        await msg.guild.ban(user, { reason });
+        await msg.guild.ban(user, { reason, days: 1 });
+        await msg.guild.unban(user, 'Softban process. Pruned one day worth of messages.');
 
         if (msg.guild.settings.modlog) {
             new ModLog(msg.guild)
-                .setType('ban')
+                .setType('softban')
                 .setModerator(msg.author)
                 .setUser(user)
                 .setReason(reason)
                 .send();
         }
 
-        return msg.send(`Successfully banned the member ${user.tag}${reason ? `\nWith reason of: ${reason}` : ''}`);
+        return msg.send(`Successfully softbanned the member ${user.tag}${reason ? `\nWith reason of: ${reason}` : ''}`);
     }
 
 };

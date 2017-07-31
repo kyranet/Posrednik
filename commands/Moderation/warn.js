@@ -7,6 +7,7 @@ module.exports = class extends Command {
         super(...args, {
             name: 'warn',
             permLevel: 2,
+            runIn: ['text'],
 
             description: 'Warns the mentioned member.',
             usage: '<user:member> [reason:string] [...]',

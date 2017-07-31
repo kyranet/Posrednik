@@ -8,6 +8,7 @@ module.exports = class extends Command {
             name: 'unban',
             permLevel: 2,
             botPerms: ['BAN_MEMBERS'],
+            runIn: ['text'],
 
             description: 'Unbans the mentioned user.',
             usage: '<user:user> [reason:string] [...]',
