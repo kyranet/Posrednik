@@ -10,19 +10,21 @@ module.exports = class extends Command {
             runIn: ['text'],
 
             description: 'Prunes a certain amount of messages w/o filter.',
-            usage: '[limit:integer] [link|invite|bots|you|me|upload|user] [user:user]',
+            usage: '[limit:integer] [link|invite|bots|you|me|upload|user:user]',
             usageDelim: ' '
         });
     }
 
-    async run(msg, [limit = 50, filter = null, user = null]) {
-        let messages = await msg.channel.fetchMessages({ limit });
+    async run(msg, [limit = 50, filter = null]) {
+        let messages = await msg.channel.fetchMessages({ limit: 100 });
         if (filter) {
-            if (filter === 'user' && !user) return msg.send(`Dear ${msg.author}, you must specify a user with this filter.`);
-            messages = messages.filter(this.getFilter(msg, filter, user));
+            const user = typeof filter !== 'string' ? filter : null;
+            const type = typeof filter === 'string' ? filter : 'user';
+            messages = messages.filter(this.getFilter(msg, type, user));
         }
+        messages = messages.array().slice(0, limit);
         await msg.channel.bulkDelete(messages);
-        return msg.send(`Successfully deleted ${messages.size} messages from ${limit}.`);
+        return msg.send(`Successfully deleted ${messages.length} messages from ${limit}.`);
     }
 
     getFilter(msg, filter, user) {
