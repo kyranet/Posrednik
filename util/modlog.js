@@ -52,9 +52,9 @@ module.exports = class ModLog {
             .setAuthor(this.moderator.tag, this.moderator.avatar)
             .setColor(ModLog.colour(this.type))
             .setDescription([
-                `Type: ${this.type}`,
-                `User: ${this.user.tag} (${this.user.id})`,
-                `Reason: ${this.reason || `Use \`${this.guild.settings.prefix}reason ${this.case} to claim this log.\``}`
+                `**Type**: ${this.type}`,
+                `**User**: ${this.user.tag} (${this.user.id})`,
+                `**Reason**: ${this.reason || `Use \`${this.guild.settings.prefix}reason ${this.case} to claim this log.\``}`
             ])
             .setFooter(`Case ${this.case}`)
             .setTimestamp();
@@ -92,6 +92,7 @@ module.exports = class ModLog {
             case 'unban': return 1822618;
             case 'warn': return 16564545;
             case 'kick': return 16573465;
+            case 'softban': return 15014476;
             default: return 16777215;
         }
     }
