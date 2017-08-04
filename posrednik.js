@@ -3,7 +3,7 @@ const config = require('./config.json');
 
 const client = new klasa.Client({
     clientOptions: {},
-    prefix: '+',
+    prefix: 'p!',
     cmdPrompt: true,
     cmdEditing: true
 });
