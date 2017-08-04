@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "github:hydrabolt/discord.js",
-    "klasa": "github:dirigeants/klasa"
+    "klasa": "github:dirigeants/klasa#master"
   }
 }
