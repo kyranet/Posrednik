@@ -28,7 +28,7 @@ module.exports = class extends Command {
         const channel = msg.guild.channels.get(msg.guild.settings.modlog);
         if (!channel) return msg.send('The modlog channel does not exist, did it get deleted?');
 
-        const messages = await channel.fetchMessages({ limit: 100 });
+        const messages = await channel.messages.fetch({ limit: 100 });
         const message = messages.find(mes => mes.author.id === this.client.user.id &&
             mes.embeds.length > 0 &&
             mes.embeds[0].type === 'rich' &&
