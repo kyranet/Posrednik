@@ -103,7 +103,16 @@ module.exports = class extends Language {
             COMMAND_ANNOUNCEMENT: (role) => `**New announcement for** ${role}:`,
             SYSTEM_HIGHEST_ROLE: 'This role\'s hierarchy position is higher or equal than me, I am not able to grant it to anyone.',
             SYSTEM_CHANNEL_NOT_POSTABLE: 'I am not allowed to send messages to this channel.',
-            COMMAND_SUCCESS: 'Successfully executed the command.'
+            COMMAND_SUCCESS: 'Successfully executed the command.',
+            DEAR: 'Dear',
+            COMMAND_BAN_FAIL_BANNABLE: 'I am not able to ban this member, sorry',
+            COMMAND_BAN_FAIL_POSITION: 'you may not execute this command on this member',
+            COMMAND_BAN_SUCCESS: 'Successfully banned the member',
+            COMMAND_BAN_REASON: 'With reason of',
+            COMMAND_CASE_REASON: 'No reason specified, write',
+            COMMAND_CASE_CLAIM: 'to claim this log',
+            COMMAND_CASE_SORRY: 'I am sorry dear',
+            COMMAND_CASE_NO: 'but there is no modlog under that case'
         };
     }
 

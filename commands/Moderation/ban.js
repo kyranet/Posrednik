@@ -23,9 +23,9 @@ module.exports = class extends Command {
 
         if (!member);
         else if (member.highestRole.position >= msg.member.highestRole.position) {
-            return msg.send(`Dear ${msg.author}, you may not execute this command on this member.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_POSITION')}.`);
         } else if (member.bannable === false) {
-            return msg.send(`Dear ${msg.author}, I am not able to ban this member, sorry.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}.`);
         }
 
         await msg.guild.ban(user, { reason });
@@ -39,7 +39,7 @@ module.exports = class extends Command {
                 .send();
         }
 
-        return msg.send(`Successfully banned the member ${user.tag}${reason ? `\nWith reason of: ${reason}` : ''}`);
+        return msg.send(`${msg.language.get('COMMAND_BAN_SUCCESS')} ${user.tag}${reason ? `\n${msg.language.get('COMMAND_BAN_REASON')}: ${reason}` : ''}`);
     }
 
 };
