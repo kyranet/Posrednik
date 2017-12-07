@@ -25,7 +25,7 @@ module.exports = class extends Command {
         const log = modlogs[selected];
         if (!log) return msg.send(`I am sorry dear ${msg.author}, but there is no modlog under that case.`);
 
-        const channel = msg.guild.channels.get(msg.guild.settings.modlog);
+        const channel = msg.guild.channels.get(msg.guild.configs.modlog);
         if (!channel) return msg.send('The modlog channel does not exist, did it get deleted?');
 
         const messages = await channel.messages.fetch({ limit: 100 });

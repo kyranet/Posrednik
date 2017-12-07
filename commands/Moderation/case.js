@@ -22,7 +22,7 @@ module.exports = class extends Command {
         return msg.send([
             `User      : ${log.user.tag} (${log.user.id})`,
             `Moderator : ${log.moderator.tag} (${log.moderator.id})`,
-            `Reason    : ${log.reason || `No reason specified, write '${msg.guild.settings.prefix}reason ${selected}' to claim this log.`}`
+            `Reason    : ${log.reason || `No reason specified, write '${msg.guild.configs.prefix}reason ${selected}' to claim this log.`}`
         ], { code: 'http' });
     }
 

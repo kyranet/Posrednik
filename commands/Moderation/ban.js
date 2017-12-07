@@ -30,7 +30,7 @@ module.exports = class extends Command {
 
         await msg.guild.ban(user, { reason });
 
-        if (msg.guild.settings.modlog) {
+        if (msg.guild.configs.modlog) {
             new ModLog(msg.guild)
                 .setType('ban')
                 .setModerator(msg.author)

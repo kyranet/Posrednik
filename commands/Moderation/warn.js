@@ -22,7 +22,7 @@ module.exports = class extends Command {
             return msg.send(`Dear ${msg.author}, you may not execute this command on this member.`);
         }
 
-        if (msg.guild.settings.modlog) {
+        if (msg.guild.configs.modlog) {
             new ModLog(msg.guild)
                 .setType('warn')
                 .setModerator(msg.author)

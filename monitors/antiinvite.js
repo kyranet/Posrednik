@@ -11,10 +11,17 @@ module.exports = class extends Monitor {
     }
 
     run(msg) {
-        if (msg.channel.type !== 'text' || msg.guild.settings.antiinvite !== true) return null;
+        if (msg.channel.type !== 'text' || msg.guild.configs.antiinvite !== true) return null;
         if (!/(https?:\/\/)?(www\.)?(discord\.(gg|li|me|io)|discordapp\.com\/invite)\/.+/.test(msg.content)) return null;
         return msg.delete()
             .catch(err => this.client.emit('log', err, 'error'));
+    }
+
+    async init() {
+        if (!this.client.configs.guilds.schema.antiinvite) {
+            return this.client.configs.guilds.add('antiinvite', { type: 'Boolean', default: false });
+        }
+        return null;
     }
 
 };

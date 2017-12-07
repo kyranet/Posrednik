@@ -41,7 +41,7 @@ module.exports = class ModLog {
     }
 
     async send() {
-        const channel = this.guild.channels.get(this.guild.settings.modlog);
+        const channel = this.guild.channels.get(this.guild.configs.modlog);
         if (!channel) throw 'The modlog channel does not exist, did it get deleted?';
         this.case = await this.getCase();
         return channel.send({ embed: this.embed });
@@ -54,7 +54,7 @@ module.exports = class ModLog {
             .setDescription([
                 `**Type**: ${this.type}`,
                 `**User**: ${this.user.tag} (${this.user.id})`,
-                `**Reason**: ${this.reason || `Use \`${this.guild.settings.prefix}reason ${this.case} to claim this log.\``}`
+                `**Reason**: ${this.reason || `Use \`${this.guild.configs.prefix}reason ${this.case} to claim this log.\``}`
             ])
             .setFooter(`Case ${this.case}`)
             .setTimestamp();
