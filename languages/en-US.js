@@ -147,15 +147,15 @@ module.exports = class extends Language {
             COMMAND_CASE_CLAIM: 'to claim this log.',
             COMMAND_CASE_SORRY: 'I am sorry dear',
             COMMAND_CASE_NO: 'but there is no modlog under that case.',
-            COMMAND_CASE_DESCRIPTION: "Check a case.",
+            COMMAND_CASE_DESCRIPTION: 'Check a case.',
             COMMAND_HISTORY_NO: 'There is no log under the',
             COMMAND_HISTORY_ACCOUNT: 'account.',
             COMMAND_HISTORY_THE_USER: 'the user',
             COMMAND_HISTORY_LOGS: 'has the following logs:',
-            COMMAND_HISTORY_DESCRIPTION: "Check the history for the mentioned member.",
+            COMMAND_HISTORY_DESCRIPTION: 'Check the history for the mentioned member.',
             COMMAND_KICK_FAIL_KICKABLE: 'I am not able to kick this member, sorry.',
             COMMAND_KICK_SUCCESS: 'Successfully kicked the member',
-            COMMAND_KICK_DESCRIPTION: "Kicks the mentioned member.",
+            COMMAND_KICK_DESCRIPTION: 'Kicks the mentioned member.',
             COMMAND_LOCKDOWN_SUCCESSFULLY: 'Successfully',
             COMMAND_LOCKDOWN_DESCRIPTION: 'Lock/unlock the selected channel.',
             COMMAND_LOCKDOWN_LOCKED: 'locked the channel',
@@ -163,7 +163,8 @@ module.exports = class extends Language {
             COMMAND_LOCKDOWN_SPAM: 'Lockdown to prevent spam',
             COMMAND_PRUNE_SUCCESSFULLY: 'Successfully deleted',
             COMMAND_PRUNE_MESSAGES: 'messages from',
-            COMMAND_PRUNE_DESCRIPTION: 'Prunes a certain amount of messages w/o filter.'
+            COMMAND_PRUNE_DESCRIPTION: 'Prunes a certain amount of messages w/o filter.',
+            COMMAND_REASON_DESCRIPTION: 'Edit the reason field from a case.'
         };
     }
 

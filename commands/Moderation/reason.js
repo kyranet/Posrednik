@@ -10,7 +10,7 @@ module.exports = class extends Command {
             runIn: ['text'],
             requiredSettings: ['modlog'],
 
-            description: 'Edit the reason field from a case.',
+            description: (msg) => msg.language.get('COMMAND_REASON_DESCRIPTION'),
             usage: '<case:integer> <reason:string> [...]',
             usageDelim: ' '
         });
