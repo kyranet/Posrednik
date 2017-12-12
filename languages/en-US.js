@@ -164,7 +164,10 @@ module.exports = class extends Language {
             COMMAND_PRUNE_SUCCESSFULLY: 'Successfully deleted',
             COMMAND_PRUNE_MESSAGES: 'messages from',
             COMMAND_PRUNE_DESCRIPTION: 'Prunes a certain amount of messages w/o filter.',
-            COMMAND_REASON_DESCRIPTION: 'Edit the reason field from a case.'
+            COMMAND_REASON_DESCRIPTION: 'Edit the reason field from a case.',
+            COMMAND_SOFTBAN_DESCRIPTION: 'Softbans the mentioned member.',
+            COMMAND_UNBAN_DESCRIPTION: 'Unbans the mentioned user.',
+            COMMAND_WARN_DESCRIPTION: 'Warns the mentioned member.'
         };
     }
 

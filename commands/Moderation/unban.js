@@ -10,7 +10,7 @@ module.exports = class extends Command {
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
 
-            description: 'Unbans the mentioned user.',
+            description: (msg) => msg.language.get('COMMAND_UNBAN_DESCRIPTION'),
             usage: '<user:user> [reason:string] [...]',
             usageDelim: ' '
         });

@@ -10,7 +10,7 @@ module.exports = class extends Command {
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
 
-            description: 'Softbans the mentioned member.',
+            description: (msg) => msg.language.get('COMMAND_SOFTBAN_DESCRIPTION'),
             usage: '<user:user> [reason:string] [...]',
             usageDelim: ' '
         });
