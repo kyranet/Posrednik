@@ -62,7 +62,7 @@ module.exports = class ModLog {
     }
 
     async getCase() {
-        const modlogs = await this.client.providers.get('modlogs', this.guild.id);
+        const modlogs = await this.provider.get('modlogs', this.guild.id);
         if (!modlogs) return this.provider.create('modlogs', this.guild.id, [this.pack]).then(() => 0);
         modlogs.push(this.pack);
         await this.provider.replace('modlogs', this.guild.id, modlogs);
