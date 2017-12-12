@@ -118,7 +118,11 @@ module.exports = class extends Language {
             COMMAND_HISTORY_THE_USER: 'the user',
             COMMAND_HISTORY_LOGS: 'has the following logs',
             COMMAND_KICK_FAIL_KICKABLE: 'I am not able to kick this member, sorry',
-            COMMAND_KICK_SUCCESS: 'Successfully kicked the member'
+            COMMAND_KICK_SUCCESS: 'Successfully kicked the member',
+            COMMAND_LOCKDOWN_SUCCESSFULLY: 'Successfully',
+            COMMAND_LOCKDOWN_LOCKED: 'locked the channel',
+            COMMAND_LOCKDOWN_RELEASED: 'Lockdown released',
+            COMMAND_LOCKDOWN_SPAM: 'Lockdown to prevent spam'
         };
     }
 

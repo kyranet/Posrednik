@@ -18,13 +18,13 @@ module.exports = class extends Command {
         const locked = await this.handleLockdown(channel, channel.type === 'text' ? 'SEND_MESSAGES' : 'CONNECT');
 
         if (msg.channel.permissionsFor(msg.guild.me).has('SEND_MESSAGES') === false) return true;
-        return msg.send(`Successfully ${locked ? '' : 'un'}locked the channel ${channel}`);
+        return msg.send(`${msg.language.get('COMMAND_LOCKDOWN_SUCCESSFULLY')} ${locked ? '' : 'un'}${msg.language.get('COMMAND_LOCKDOWN_LOCKED')} ${channel}`);
     }
-
+    ${msg.language.get('COMMAND_BAN_SUCCESS')}
     handleLockdown(channel, permission) {
         const permOverwrite = channel.permissionOverwrites.get(channel.guild.defaultRole.id);
         const locked = permOverwrite ? permOverwrite.denied.has(permission) : false;
-        return channel.overwritePermissions(channel.guild.defaultRole, { [permission]: locked }, locked ? 'Lockdown released.' : 'Lockdown to prevent spam.')
+        return channel.overwritePermissions(channel.guild.defaultRole, { [permission]: locked }, locked ? `${msg.language.get('COMMAND_LOCKDOWN_RELEASED')}.` : `${msg.language.get('COMMAND_LOCKDOWN_SPAM')}.`)
             .then(() => !locked);
     }
 

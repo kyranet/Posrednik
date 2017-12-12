@@ -21,6 +21,7 @@ module.exports = class extends Monitor {
         if (!this.client.gateways.guilds.schema.hasKey('antiinvite')) {
             return this.client.gateways.guilds.schema.addKey('antiinvite', { type: 'Boolean', default: false });
         }
+        return null;
     }
 
 };
