@@ -23,7 +23,7 @@ module.exports = class extends Command {
 
         if (!member);
         else if (member.highestRole.position >= msg.member.highestRole.position) {
-            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_POSITION')}.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}.`);
         } else if (member.bannable === false) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}.`);
         }
@@ -39,7 +39,7 @@ module.exports = class extends Command {
                 .send();
         }
 
-        return msg.send(`${msg.language.get('COMMAND_BAN_SUCCESS')} ${user.tag}${reason ? `\n${msg.language.get('COMMAND_BAN_REASON')}: ${reason}` : ''}`);
+        return msg.send(`${msg.language.get('COMMAND_BAN_SUCCESS')} ${user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
     }
 
 };

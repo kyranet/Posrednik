@@ -18,10 +18,9 @@ module.exports = class extends Monitor {
     }
 
     async init() {
-        if (!this.client.configs.guilds.schema.antiinvite) {
-            return this.client.configs.guilds.add('antiinvite', { type: 'Boolean', default: false });
+        if (!this.client.gateways.guilds.schema.hasKey('antiinvite')) {
+            return this.client.gateways.guilds.schema.addKey('antiinvite', { type: 'Boolean', default: false });
         }
-        return null;
     }
 
 };

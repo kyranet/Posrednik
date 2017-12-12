@@ -105,14 +105,20 @@ module.exports = class extends Language {
             SYSTEM_CHANNEL_NOT_POSTABLE: 'I am not allowed to send messages to this channel.',
             COMMAND_SUCCESS: 'Successfully executed the command.',
             DEAR: 'Dear',
+            ACCOUNT: 'account',
             COMMAND_BAN_FAIL_BANNABLE: 'I am not able to ban this member, sorry',
-            COMMAND_BAN_FAIL_POSITION: 'you may not execute this command on this member',
+            POSITION: 'you may not execute this command on this member',
             COMMAND_BAN_SUCCESS: 'Successfully banned the member',
-            COMMAND_BAN_REASON: 'With reason of',
+            REASON: 'With reason of',
             COMMAND_CASE_REASON: 'No reason specified, write',
             COMMAND_CASE_CLAIM: 'to claim this log',
             COMMAND_CASE_SORRY: 'I am sorry dear',
-            COMMAND_CASE_NO: 'but there is no modlog under that case'
+            COMMAND_CASE_NO: 'but there is no modlog under that case',
+            COMMAND_HISTORY_NO: 'There is no log under the',
+            COMMAND_HISTORY_THE_USER: 'the user',
+            COMMAND_HISTORY_LOGS: 'has the following logs',
+            COMMAND_KICK_FAIL_KICKABLE: 'I am not able to kick this member, sorry',
+            COMMAND_KICK_SUCCESS: 'Successfully kicked the member'
         };
     }
 
