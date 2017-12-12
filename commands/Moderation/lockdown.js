@@ -9,7 +9,7 @@ module.exports = class extends Command {
             botPerms: ['MANAGE_CHANNELS', 'MANAGE_ROLES'],
             runIn: ['text'],
 
-            description: 'Lock/unlock the selected channel.',
+            description: (msg) => msg.language.get('COMMAND_LOCKDOWN_DESCRIPTION'),
             usage: '<channel:channel>'
         });
     }

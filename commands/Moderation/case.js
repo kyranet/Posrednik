@@ -8,7 +8,7 @@ module.exports = class extends Command {
             permLevel: 2,
             runIn: ['text'],
 
-            description: 'Check a case.',
+            description: (msg) => msg.language.get('COMMAND_CASE_DESCRIPTION'),
             usage: '<case:integer>'
         });
 

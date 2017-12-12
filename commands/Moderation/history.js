@@ -8,7 +8,7 @@ module.exports = class extends Command {
             permLevel: 2,
             runIn: ['text'],
 
-            description: 'Check the history for the mentioned member.',
+            description: (msg) => msg.language.get('COMMAND_HISTORY_DESCRIPTION'),
             usage: '<user:user>'
         });
 

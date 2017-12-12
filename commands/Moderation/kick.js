@@ -10,7 +10,7 @@ module.exports = class extends Command {
             botPerms: ['KICK_MEMBERS'],
             runIn: ['text'],
 
-            description: 'Kicks the mentioned member.',
+            description: (msg) => msg.language.get('COMMAND_KICK_DESCRIPTION'),
             usage: '<user:member> [reason:string] [...]',
             usageDelim: ' '
         });
