@@ -9,7 +9,7 @@ module.exports = class extends Command {
             botPerms: ['MANAGE_MESSAGES'],
             runIn: ['text'],
 
-            description: 'Prunes a certain amount of messages w/o filter.',
+            description: (msg) => msg.language.get('COMMAND_PRUNE_DESCRIPTION'),
             usage: '[limit:integer] [link|invite|bots|you|me|upload|user:user]',
             usageDelim: ' '
         });
@@ -24,7 +24,7 @@ module.exports = class extends Command {
         }
         messages = messages.array().slice(0, limit);
         await msg.channel.bulkDelete(messages);
-        return msg.send(`Successfully deleted ${messages.length} messages from ${limit}.`);
+        return msg.send(`${msg.language.get('COMMAND_PRUNE_SUCCESSFULLY')} ${messages.length} ${msg.language.get('COMMAND_PRUNE_MESSAGES')} ${limit}.`);
     }
 
     getFilter(msg, filter, user) {

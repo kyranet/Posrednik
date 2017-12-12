@@ -20,9 +20,9 @@ module.exports = class extends Command {
         reason = reason.length > 0 ? reason.join(' ') : null;
 
         if (member.highestRole.position >= msg.member.highestRole.position) {
-            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         } else if (member.kickable === false) {
-            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_KICK_FAIL_KICKABLE')}.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_KICK_FAIL_KICKABLE')}`);
         }
 
         await member.kick(reason);

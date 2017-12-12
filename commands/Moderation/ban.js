@@ -10,7 +10,7 @@ module.exports = class extends Command {
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
 
-            description: 'Bans the mentioned member.',
+            description: (msg) => msg.language.get('COMMAND_BAN_DESCRIPTION'),
             usage: '<user:user> [reason:string] [...]',
             usageDelim: ' '
         });
@@ -23,9 +23,9 @@ module.exports = class extends Command {
 
         if (!member);
         else if (member.highestRole.position >= msg.member.highestRole.position) {
-            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         } else if (member.bannable === false) {
-            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}`);
         }
 
         await msg.guild.ban(user, { reason });
