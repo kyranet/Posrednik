@@ -167,7 +167,9 @@ module.exports = class extends Language {
             COMMAND_REASON_DESCRIPTION: 'Edit the reason field from a case.',
             COMMAND_SOFTBAN_DESCRIPTION: 'Softbans the mentioned member.',
             COMMAND_UNBAN_DESCRIPTION: 'Unbans the mentioned user.',
-            COMMAND_WARN_DESCRIPTION: 'Warns the mentioned member.'
+            COMMAND_WARN_DESCRIPTION: 'Warns the mentioned member.',
+            COMMAND_SOFTBAN_AUDIT_REASON: "Softban process. Pruned one day worth of messages.",
+            COMMAND_SOFTBAN_SUCCESSFULLY: 'Successfully softbanned the member'
         };
     }
 

@@ -23,13 +23,13 @@ module.exports = class extends Command {
 
         if (!member);
         else if (member.highestRole.position >= msg.member.highestRole.position) {
-            return msg.send(`Dear ${msg.author}, you may not execute this command on this member.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         } else if (member.bannable === false) {
-            return msg.send(`Dear ${msg.author}, I am not able to ban this member, sorry.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}`);
         }
 
         await msg.guild.ban(user, { reason, days: 1 });
-        await msg.guild.unban(user, 'Softban process. Pruned one day worth of messages.');
+        await msg.guild.unban(user, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
 
         if (msg.guild.configs.modlog) {
             new ModLog(msg.guild)
@@ -40,7 +40,7 @@ module.exports = class extends Command {
                 .send();
         }
 
-        return msg.send(`Successfully softbanned the member ${user.tag}${reason ? `\nWith reason of: ${reason}` : ''}`);
+        return msg.send(`${msg.language.get('COMMAND_SOFTBAN_SUCCESSFULLY')} ${user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
     }
 
 };
