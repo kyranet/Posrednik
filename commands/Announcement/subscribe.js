@@ -13,6 +13,8 @@ module.exports = class extends Command {
         });
     }
 
+    // This command just add the set announcement subscriber role to the member
+
     async run(msg) {
         const role = announcement(msg);
         await msg.member.addRole(role);

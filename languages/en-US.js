@@ -1,5 +1,7 @@
 const { Language, util } = require('klasa');
 
+// A language file that almost every command uses
+
 module.exports = class extends Language {
 
     constructor(...args) {

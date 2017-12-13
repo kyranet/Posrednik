@@ -13,6 +13,8 @@ module.exports = class extends Command {
         });
     }
 
+    // This command just removes the set announcement subscriber role to the member
+
     async run(msg) {
         const role = announcement(msg);
         await msg.member.removeRole(role);
