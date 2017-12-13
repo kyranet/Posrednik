@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'ban',
-            permLevel: 2,
+            permLevel: 4,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
 
