@@ -22,7 +22,7 @@ module.exports = class extends Command {
         const bans = await msg.guild.fetchBans();
 
         if (bans.has(user.id) === false) {
-            return msg.send(`Dear ${msg.author}, this user is not banned.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_UNBAN_FAIL')}`);
         }
 
         await msg.guild.unban(user, reason);
@@ -36,7 +36,7 @@ module.exports = class extends Command {
                 .send();
         }
 
-        return msg.send(`Successfully unbanned the member ${user.tag}${reason ? `\nWith reason of: ${reason}` : ''}`);
+        return msg.send(`${msg.language.get('COMMAND_UNBAN_SUCCESS')} ${user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
     }
 
 };
