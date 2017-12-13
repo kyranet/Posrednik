@@ -168,8 +168,13 @@ module.exports = class extends Language {
             COMMAND_SOFTBAN_DESCRIPTION: 'Softbans the mentioned member.',
             COMMAND_UNBAN_DESCRIPTION: 'Unbans the mentioned user.',
             COMMAND_WARN_DESCRIPTION: 'Warns the mentioned member.',
-            COMMAND_SOFTBAN_AUDIT_REASON: "Softban process. Pruned one day worth of messages.",
-            COMMAND_SOFTBAN_SUCCESSFULLY: 'Successfully softbanned the member'
+            COMMAND_SOFTBAN_AUDIT_REASON: 'Softban process. Pruned one day worth of messages.',
+            COMMAND_SOFTBAN_SUCCESSFULLY: 'Successfully softbanned the member',
+            SORRY_DEAR: 'I am sorry dear',
+            COMMAND_REASON_CASE: 'but there is no modlog under that case.',
+            COMMAND_REASON_MODLOG: 'The modlog channel does not exist, did it get deleted?',
+            CASE: 'Case',
+            COMMAND_REASON_SUCCESS: 'Successfully updated the log'
         };
     }
 
