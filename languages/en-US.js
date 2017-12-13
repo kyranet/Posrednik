@@ -173,8 +173,11 @@ module.exports = class extends Language {
             SORRY_DEAR: 'I am sorry dear',
             COMMAND_REASON_CASE: 'but there is no modlog under that case.',
             COMMAND_REASON_MODLOG: 'The modlog channel does not exist, did it get deleted?',
+            COMMAND_REASON_SUCCESS: 'Successfully updated the log',
             CASE: 'Case',
-            COMMAND_REASON_SUCCESS: 'Successfully updated the log'
+            COMMAND_WARN_SUCCESS: "Successfully warned the member",
+            COMMAND_UNBAN_FAIL: "this user is not banned.",
+            COMMAND_UNBAN_SUCCESS: "Successfully unbanned the member"
         };
     }
 
