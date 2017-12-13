@@ -10,7 +10,7 @@ const permissionLevels = new PermissionLevels()
     .addLevel(9, true, (client, msg) => msg.author === client.owner)
     .addLevel(10, false, (client, msg) => msg.author === client.owner);
 
-class client extends Client {
+class Posrednik extends Client {
 
     constructor() {
         super({
@@ -24,4 +24,4 @@ class client extends Client {
 
 }
 
-new client().login(config.token);
+new Posrednik().login(config.token);
