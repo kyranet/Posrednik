@@ -21,6 +21,7 @@ class Posrednik extends Client {
             prefix: 'p!',
             cmdPrompt: true,
             cmdEditing: true,
+            // Grabs the newly set permission levels from up top
             permissionLevels
         });
     }
