@@ -21,6 +21,7 @@ module.exports = class extends Command {
 
         const member = await msg.guild.members.fetch(user).catch(() => null);
 
+        // noinspection StatementWithEmptyBodyJS
         if (!member);
         else if (member.highestRole.position >= msg.member.highestRole.position) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
