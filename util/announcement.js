@@ -1,5 +1,5 @@
 module.exports = (msg) => {
-    const announcementID = msg.guild.settings.announcementRole;
+    const announcementID = msg.guild.configs.announcementRole;
     if (announcementID === null) throw msg.language.get('COMMAND_SUBSCRIBE_NO_ROLE');
     const role = msg.guild.roles.get(announcementID);
     if (!role) throw msg.language.get('COMMAND_SUBSCRIBE_NO_ROLE');

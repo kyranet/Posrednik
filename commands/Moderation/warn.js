@@ -9,7 +9,7 @@ module.exports = class extends Command {
             permLevel: 2,
             runIn: ['text'],
 
-            description: 'Warns the mentioned member.',
+            description: (msg) => msg.language.get('COMMAND_WARN_DESCRIPTION'),
             usage: '<user:member> [reason:string] [...]',
             usageDelim: ' '
         });
@@ -19,10 +19,10 @@ module.exports = class extends Command {
         reason = reason.length > 0 ? reason.join(' ') : null;
 
         if (member.highestRole.position >= msg.member.highestRole.position) {
-            return msg.send(`Dear ${msg.author}, you may not execute this command on this member.`);
+            return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         }
 
-        if (msg.guild.settings.modlog) {
+        if (msg.guild.configs.modlog) {
             new ModLog(msg.guild)
                 .setType('warn')
                 .setModerator(msg.author)
@@ -31,7 +31,7 @@ module.exports = class extends Command {
                 .send();
         }
 
-        return msg.send(`Successfully warned the member ${member.user.tag}${reason ? `\nWith reason of: ${reason}` : ''}`);
+        return msg.send(`${msg.language.get('COMMAND_WARN_SUCCESS')} ${member.user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
     }
 
 };

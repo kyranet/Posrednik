@@ -25,6 +25,8 @@ module.exports = class ModLog {
         return this;
     }
 
+    // Here we get all the info about the executing Moderator
+
     setModerator(user) {
         this.moderator = {
             id: user.id,
@@ -40,12 +42,16 @@ module.exports = class ModLog {
         return this;
     }
 
+    // Checks if the modlog channel still exsists if not it throws an error to the console
+
     async send() {
-        const channel = this.guild.channels.get(this.guild.settings.modlog);
+        const channel = this.guild.channels.get(this.guild.configs.modlog);
         if (!channel) throw 'The modlog channel does not exist, did it get deleted?';
         this.case = await this.getCase();
         return channel.send({ embed: this.embed });
     }
+
+    // Here we build the modlog embed
 
     get embed() {
         const embed = new this.client.methods.Embed()
@@ -54,12 +60,14 @@ module.exports = class ModLog {
             .setDescription([
                 `**Type**: ${this.type}`,
                 `**User**: ${this.user.tag} (${this.user.id})`,
-                `**Reason**: ${this.reason || `Use \`${this.guild.settings.prefix}reason ${this.case} to claim this log.\``}`
+                `**Reason**: ${this.reason || `Use \`${this.guild.configs.prefix}reason ${this.case} to claim this log.\``}`
             ])
             .setFooter(`Case ${this.case}`)
             .setTimestamp();
         return embed;
     }
+
+    // Here we get the case number and create a modlog provider entry
 
     async getCase() {
         const modlogs = await this.provider.get('modlogs', this.guild.id);
@@ -68,6 +76,8 @@ module.exports = class ModLog {
         await this.provider.replace('modlogs', this.guild.id, modlogs);
         return modlogs.length - 1;
     }
+
+    // Here we pack all the info together
 
     get pack() {
         return {
@@ -82,9 +92,13 @@ module.exports = class ModLog {
         };
     }
 
+    // Here we get the provider type. Meaning how it will store the internal entry
+
     get provider() {
         return this.client.providers.get('json');
     }
+
+    // And here we just define the color for a certain type of offence or action
 
     static colour(type) {
         switch (type) {

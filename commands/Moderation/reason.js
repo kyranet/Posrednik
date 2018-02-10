@@ -10,7 +10,7 @@ module.exports = class extends Command {
             runIn: ['text'],
             requiredSettings: ['modlog'],
 
-            description: 'Edit the reason field from a case.',
+            description: (msg) => msg.language.get('COMMAND_REASON_DESCRIPTION'),
             usage: '<case:integer> <reason:string> [...]',
             usageDelim: ' '
         });
@@ -23,16 +23,16 @@ module.exports = class extends Command {
 
         const modlogs = await this.provider.get('modlogs', msg.guild.id).then(data => data || []);
         const log = modlogs[selected];
-        if (!log) return msg.send(`I am sorry dear ${msg.author}, but there is no modlog under that case.`);
+        if (!log) return msg.send(`${msg.language.get('SORRY_DEAR')} ${msg.author}, ${msg.language.get('COMMAND_REASON_CASE')}`);
 
-        const channel = msg.guild.channels.get(msg.guild.settings.modlog);
-        if (!channel) return msg.send('The modlog channel does not exist, did it get deleted?');
+        const channel = msg.guild.channels.get(msg.guild.configs.modlog);
+        if (!channel) return msg.send(`${msg.language.get('COMMAND_REASON_MODLOG')}`);
 
         const messages = await channel.messages.fetch({ limit: 100 });
         const message = messages.find(mes => mes.author.id === this.client.user.id &&
             mes.embeds.length > 0 &&
             mes.embeds[0].type === 'rich' &&
-            mes.embeds[0].footer && mes.embeds[0].footer.text === `Case ${selected}`
+            mes.embeds[0].footer && mes.embeds[0].footer.text === `${msg.language.get('CASE')} ${selected}`
         );
 
         if (message) {
@@ -63,7 +63,7 @@ module.exports = class extends Command {
         modlogs[selected].reason = reason;
         await this.provider.replace('modlogs', msg.guild.id, modlogs);
 
-        return msg.send(`Successfully updated the log ${selected}.${util.codeBlock('http', [
+        return msg.send(`${msg.language.get('COMMAND_REASON_SUCCESS')} ${selected}.${util.codeBlock('http', [
             `Old reason : ${oldReason || 'Not set.'}`,
             `New reason : ${reason}`
         ].join('\n'))}`);
