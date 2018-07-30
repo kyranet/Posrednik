@@ -18,11 +18,11 @@ module.exports = class extends Command {
     async run(msg, [member, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
 
-        if (member.highestRole.position >= msg.member.highestRole.position) {
+        if (member.roles.highest.position >= msg.member.roles.highest.position) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         }
 
-        if (msg.guild.configs.modlog) {
+        if (msg.guild.configs.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('warn')
                 .setModerator(msg.author)

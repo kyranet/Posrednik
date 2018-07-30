@@ -25,7 +25,7 @@ module.exports = class extends Command {
         const log = modlogs[selected];
         if (!log) return msg.send(`${msg.language.get('SORRY_DEAR')} ${msg.author}, ${msg.language.get('COMMAND_REASON_CASE')}`);
 
-        const channel = msg.guild.channels.get(msg.guild.configs.modlog);
+        const channel = msg.guild.channels.get(msg.guild.configs.channels.modlog);
         if (!channel) return msg.send(`${msg.language.get('COMMAND_REASON_MODLOG')}`);
 
         const messages = await channel.messages.fetch({ limit: 100 });

@@ -27,7 +27,7 @@ module.exports = class extends Command {
 
         await member.kick(reason);
 
-        if (msg.guild.configs.modlog) {
+        if (msg.guild.configs.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('kick')
                 .setModerator(msg.author)

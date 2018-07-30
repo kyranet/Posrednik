@@ -22,8 +22,8 @@ module.exports = class extends Monitor {
 
     // Here it add the settings key to the guild if its not already present in the schema
     async init() {
-        if (!this.client.gateways.guilds.schema.hasKey('antiinvite')) {
-            return this.client.gateways.guilds.schema.addKey('antiinvite', { type: 'Boolean', default: false });
+        if (!this.client.gateways.guilds.schema.has('antiinvite')) {
+            return this.client.gateways.guilds.schema.add('antiinvite', { type: 'Boolean', default: false });
         }
         return null;
     }
