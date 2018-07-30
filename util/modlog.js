@@ -47,6 +47,7 @@ module.exports = class ModLog {
     async send() {
         const channel = this.guild.channels.get(this.guild.configs.channels.modlog);
         if (!channel) throw 'The modlog channel does not exist, did it get deleted?';
+        await this.getCase();
         return channel.send({ embed: this.embed });
     }
 
@@ -70,7 +71,7 @@ module.exports = class ModLog {
 
     async getCase() {
         const { modlogs } = this.guild.configs;
-        this.case = modlogs.length;
+        this.case = modlogs.length || 0;
         modlogs.push(this.pack);
         await this.guild.configs.update(['modlogs'], [modlogs]);
     }
