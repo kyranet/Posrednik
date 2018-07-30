@@ -47,7 +47,6 @@ module.exports = class ModLog {
     async send() {
         const channel = this.guild.channels.get(this.guild.configs.channels.modlog);
         if (!channel) throw 'The modlog channel does not exist, did it get deleted?';
-        this.case = await this.getCase();
         return channel.send({ embed: this.embed });
     }
 
@@ -70,12 +69,11 @@ module.exports = class ModLog {
     // Here we get the case number and create a modlog provider entry
 
     async getCase() {
-        const modlogs = this.guild.configs.modlogs;
+        const { modlogs } = this.guild.configs;
+        this.case = modlogs.length;
         modlogs.push(this.pack);
         await this.guild.configs.update(['modlogs'], [modlogs]);
-        return modlogs.length - 1;
     }
-
     // Here we pack all the info together
 
     get pack() {
