@@ -23,7 +23,7 @@ module.exports = class extends Command {
 
         // noinspection StatementWithEmptyBodyJS
         if (!member);
-        else if (member.highestRole.position >= msg.member.highestRole.position) {
+        else if (member.roles.highest.position >= msg.member.roles.highest.position) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         } else if (member.bannable === false) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}`);

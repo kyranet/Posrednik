@@ -11,37 +11,35 @@ module.exports = class extends Command {
             runIn: ['text'],
 
             description: (msg) => msg.language.get('COMMAND_SOFTBAN_DESCRIPTION'),
-            usage: '<user:user> [reason:string] [...]',
+            usage: '<member:member> [reason:string] [...]',
             usageDelim: ' '
         });
     }
 
-    async run(msg, [user, ...reason]) {
+    async run(msg, [member, days = 1, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
-
-        const member = await msg.guild.members.fetch(user).catch(() => null);
 
         // noinspection StatementWithEmptyBodyJS
         if (!member);
-        else if (member.highestRole.position >= msg.member.highestRole.position) {
+        else if (member.roles.highest.position >= msg.member.roles.highest.position) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         } else if (member.bannable === false) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}`);
         }
 
-        await msg.guild.ban(user, { reason, days: 1 });
-        await msg.guild.unban(user, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
+        await msg.guild.ban(member.id, { reason, days });
+        await msg.guild.unban(member.id, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
 
         if (msg.guild.configs.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('softban')
                 .setModerator(msg.author)
-                .setUser(user)
+                .setUser(member)
                 .setReason(reason)
                 .send();
         }
 
-        return msg.send(`${msg.language.get('COMMAND_SOFTBAN_SUCCESSFULLY')} ${user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
+        return msg.send(`${msg.language.get('COMMAND_SOFTBAN_SUCCESSFULLY')} ${member.user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
     }
 
 };

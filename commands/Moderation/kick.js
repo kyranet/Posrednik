@@ -11,7 +11,7 @@ module.exports = class extends Command {
             runIn: ['text'],
 
             description: (msg) => msg.language.get('COMMAND_KICK_DESCRIPTION'),
-            usage: '<user:member> [reason:string] [...]',
+            usage: '<member:member> [reason:string] [...]',
             usageDelim: ' '
         });
     }
@@ -19,7 +19,7 @@ module.exports = class extends Command {
     async run(msg, [member, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
 
-        if (member.highestRole.position >= msg.member.highestRole.position) {
+        if (member.roles.highest.position >= msg.member.roles.highest.position) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         } else if (member.kickable === false) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_KICK_FAIL_KICKABLE')}`);

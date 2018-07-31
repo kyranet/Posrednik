@@ -10,7 +10,7 @@ module.exports = class extends Command {
             runIn: ['text'],
 
             description: (msg) => msg.language.get('COMMAND_WARN_DESCRIPTION'),
-            usage: '<user:member> [reason:string] [...]',
+            usage: '<member:member> [reason:string] [...]',
             usageDelim: ' '
         });
     }

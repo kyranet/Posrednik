@@ -16,8 +16,7 @@ module.exports = class extends Command {
     }
 
     async run(msg, [user]) {
-        const modlogs = await this.provider.get('modlogs', msg.guild.id).then(data => data || []);
-        const userlogs = modlogs.filter(log => log.user.id === user.id);
+        const userlogs = msg.guild.configs.modlogs.filter(log => log.user === user.id);
         if (userlogs.length === 0) return msg.send(`${msg.language.get('COMMAND_HISTORY_NO')} ${user.tag} (${user.id}) ${msg.language.get('COMMAND_HISTORY_ACCOUNT')}`);
         const actions = {
             ban: 0,
@@ -36,7 +35,7 @@ module.exports = class extends Command {
     }
 
     init() {
-        this.provider = this.client.providers.get('json');
+        this.provider = this.client.providers.default;
     }
 
 };

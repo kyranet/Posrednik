@@ -21,8 +21,9 @@ module.exports = class extends Command {
     async run(msg, [selected, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
 
-        const modlogs = await this.provider.get('modlogs', msg.guild.id).then(data => data || []);
+        const modlogs = msg.guild.configs.modlogs;
         const log = modlogs[selected];
+
         if (!log) return msg.send(`${msg.language.get('SORRY_DEAR')} ${msg.author}, ${msg.language.get('COMMAND_REASON_CASE')}`);
 
         const channel = msg.guild.channels.get(msg.guild.configs.channels.modlog);
@@ -61,7 +62,7 @@ module.exports = class extends Command {
         const oldReason = log.reason;
 
         modlogs[selected].reason = reason;
-        await this.provider.replace('modlogs', msg.guild.id, modlogs);
+        await msg.guild.configs.update('modlogs', modlogs);
 
         return msg.send(`${msg.language.get('COMMAND_REASON_SUCCESS')} ${selected}.${util.codeBlock('http', [
             `Old reason : ${oldReason || 'Not set.'}`,
@@ -70,7 +71,7 @@ module.exports = class extends Command {
     }
 
     init() {
-        this.provider = this.client.providers.get('json');
+        this.provider = this.client.providers.default;
     }
 
 };
