@@ -70,11 +70,10 @@ module.exports = class ModLog {
     // Here we get the case number and create a modlog provider entry
 
     async getCase() {
-        const { modlogs } = this.guild.configs;
-        this.case = modlogs.length || 0;
-        modlogs.push(this.pack);
-        await this.guild.configs.update(['modlogs'], [modlogs]);
+        this.case = this.guild.configs.modlogs.length;
+        await this.guild.configs.update('modlogs', this.pack);
     }
+
     // Here we pack all the info together
 
     get pack() {
