@@ -9,14 +9,13 @@ module.exports = class extends Command {
             permLevel: 4,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_BAN_DESCRIPTION'),
-            usage: '<user:user> [reason:string] [...]',
+            description: language => language.get('COMMAND_BAN_DESCRIPTION'),
+            usage: '<user:user> [days:int{1,7}] [reason:string] [...]',
             usageDelim: ' '
         });
     }
 
-    async run(msg, [user, ...reason]) {
+    async run(msg, [user, days = 0, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
 
         const member = await msg.guild.members.fetch(user).catch(() => null);
@@ -29,7 +28,7 @@ module.exports = class extends Command {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}`);
         }
 
-        await msg.guild.ban(user, { reason });
+        await msg.guild.members.ban(user, { reason, days });
 
         if (msg.guild.configs.channels.modlog) {
             new ModLog(msg.guild)

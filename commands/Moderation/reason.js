@@ -9,8 +9,7 @@ module.exports = class extends Command {
             permLevel: 2,
             runIn: ['text'],
             requiredSettings: ['modlog'],
-
-            description: (msg) => msg.language.get('COMMAND_REASON_DESCRIPTION'),
+            description: language => language.get('COMMAND_REASON_DESCRIPTION'),
             usage: '<case:integer> <reason:string> [...]',
             usageDelim: ' '
         });

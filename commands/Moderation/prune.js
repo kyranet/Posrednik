@@ -8,8 +8,7 @@ module.exports = class extends Command {
             permLevel: 2,
             botPerms: ['MANAGE_MESSAGES'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_PRUNE_DESCRIPTION'),
+            description: language => language.get('COMMAND_PRUNE_DESCRIPTION'),
             usage: '[limit:integer] [link|invite|bots|you|me|upload|user:user]',
             usageDelim: ' '
         });

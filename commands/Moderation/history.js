@@ -7,8 +7,7 @@ module.exports = class extends Command {
             name: 'history',
             permLevel: 2,
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_HISTORY_DESCRIPTION'),
+            description: language => language.get('COMMAND_HISTORY_DESCRIPTION'),
             usage: '<user:user>'
         });
 

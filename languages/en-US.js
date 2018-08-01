@@ -133,7 +133,7 @@ module.exports = class extends Language {
             COMMAND_STATS_DESCRIPTION: 'Provides some details about the bot and stats.',
             COMMAND_SUBSCRIBE_NO_ROLE: 'This server does not have a configured announcement role.',
             COMMAND_SUBSCRIBE_SUCCESS: (role) => `Successfully granted the role: **${role}**`,
-            COMMAND_UNSUBSCRIBE_SUCCESS: (role) => `Successfully removed the role: **${role}***`,
+            COMMAND_UNSUBSCRIBE_SUCCESS: (role) => `Successfully removed the role: **${role}**`,
             COMMAND_SUBSCRIBE_NO_CHANNEL: 'This server does not have a configured announcement channel.',
             COMMAND_ANNOUNCEMENT: (role) => `**New announcement for** ${role}:`,
             SYSTEM_HIGHEST_ROLE: 'This role\'s hierarchy position is higher or equal than me, I am not able to grant it to anyone.',

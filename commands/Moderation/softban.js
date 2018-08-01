@@ -9,9 +9,8 @@ module.exports = class extends Command {
             permLevel: 4,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_SOFTBAN_DESCRIPTION'),
-            usage: '<member:member> [reason:string] [...]',
+            description: language => language.get('COMMAND_SOFTBAN_DESCRIPTION'),
+            usage: '<member:member> [days:int{1,7}] [reason:string] [...]',
             usageDelim: ' '
         });
     }
@@ -27,14 +26,14 @@ module.exports = class extends Command {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}`);
         }
 
-        await msg.guild.ban(member.id, { reason, days });
-        await msg.guild.unban(member.id, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
+        await msg.guild.members.ban(member.id, { reason, days });
+        await msg.guild.members.unban(member.id, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
 
         if (msg.guild.configs.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('softban')
                 .setModerator(msg.author)
-                .setUser(member)
+                .setUser(member.user)
                 .setReason(reason)
                 .send();
         }

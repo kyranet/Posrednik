@@ -8,8 +8,8 @@ module.exports = class extends Command {
             name: 'unsubscribe',
             permLevel: 0,
             runIn: ['text'],
-
-            description: 'Unsubscribe to this servers\' announcements.'
+            description: 'Unsubscribe to this servers\' announcements.',
+            aliases: ['unsub', '-1']
         });
     }
 
@@ -17,7 +17,7 @@ module.exports = class extends Command {
 
     async run(msg) {
         const role = announcement(msg);
-        await msg.member.removeRole(role);
+        await msg.member.roles.remove(role);
         return msg.send(msg.language.get('COMMAND_UNSUBSCRIBE_SUCCESS', role.name));
     }
 

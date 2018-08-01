@@ -9,8 +9,7 @@ module.exports = class extends Command {
             permLevel: 4,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_UNBAN_DESCRIPTION'),
+            description: language => language.get('COMMAND_UNBAN_DESCRIPTION'),
             usage: '<user:user> [reason:string] [...]',
             usageDelim: ' '
         });
@@ -25,7 +24,7 @@ module.exports = class extends Command {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_UNBAN_FAIL')}`);
         }
 
-        await msg.guild.unban(user, reason);
+        await msg.guild.members.unban(user, reason);
 
         if (msg.guild.configs.channels.modlog) {
             new ModLog(msg.guild)

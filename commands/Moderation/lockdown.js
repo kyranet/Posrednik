@@ -8,8 +8,7 @@ module.exports = class extends Command {
             permLevel: 2,
             botPerms: ['MANAGE_CHANNELS', 'MANAGE_ROLES'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_LOCKDOWN_DESCRIPTION'),
+            description: language => language.get('COMMAND_LOCKDOWN_DESCRIPTION'),
             usage: '<channel:channel>'
         });
     }

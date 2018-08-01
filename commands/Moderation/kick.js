@@ -9,8 +9,7 @@ module.exports = class extends Command {
             permLevel: 3,
             botPerms: ['KICK_MEMBERS'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_KICK_DESCRIPTION'),
+            description: language => language.get('COMMAND_KICK_DESCRIPTION'),
             usage: '<member:member> [reason:string] [...]',
             usageDelim: ' '
         });

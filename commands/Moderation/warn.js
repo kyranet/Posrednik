@@ -8,8 +8,7 @@ module.exports = class extends Command {
             name: 'warn',
             permLevel: 2,
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_WARN_DESCRIPTION'),
+            description: language => language.get('COMMAND_WARN_DESCRIPTION'),
             usage: '<member:member> [reason:string] [...]',
             usageDelim: ' '
         });
