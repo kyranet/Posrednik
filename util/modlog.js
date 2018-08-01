@@ -67,8 +67,6 @@ module.exports = class ModLog {
         return embed;
     }
 
-    // Here we get the case number and create a modlog provider entry
-
     async getCase() {
         this.case = this.guild.configs.modlogs.length;
         await this.guild.configs.update('modlogs', this.pack);
@@ -84,12 +82,6 @@ module.exports = class ModLog {
             reason: this.reason,
             case: this.case
         };
-    }
-
-    // Here we get the provider type. Meaning how it will store the internal entry
-
-    get provider() {
-        return this.client.providers.default;
     }
 
     // And here we just define the color for a certain type of offence or action
