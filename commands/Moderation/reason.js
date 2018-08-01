@@ -13,8 +13,6 @@ module.exports = class extends Command {
             usage: '<case:integer> <reason:string> [...]',
             usageDelim: ' '
         });
-
-        this.provider = null;
     }
 
     async run(msg, [selected, ...reason]) {
@@ -67,10 +65,6 @@ module.exports = class extends Command {
             `Old reason : ${oldReason || 'Not set.'}`,
             `New reason : ${reason}`
         ].join('\n'))}`);
-    }
-
-    init() {
-        this.provider = this.client.providers.default;
     }
 
 };

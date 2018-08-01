@@ -10,8 +10,6 @@ module.exports = class extends Command {
             description: language => language.get('COMMAND_HISTORY_DESCRIPTION'),
             usage: '<user:user>'
         });
-
-        this.provider = null;
     }
 
     async run(msg, [user]) {
@@ -31,10 +29,6 @@ module.exports = class extends Command {
             `${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_HISTORY_THE_USER')} ${user.tag} (${user.id}) ${msg.language.get('COMMAND_HISTORY_LOGS')}`,
             util.codeBlock('http', Object.entries(actions).map(([action, value]) => `${util.toTitleCase(`${action}s`).padEnd(9)}: ${value}`).join('\n'))
         ]);
-    }
-
-    init() {
-        this.provider = this.client.providers.default;
     }
 
 };

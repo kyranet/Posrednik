@@ -10,8 +10,6 @@ module.exports = class extends Command {
             description: language => language.get('COMMAND_CASE_DESCRIPTION'),
             usage: '<case:integer>'
         });
-
-        this.provider = null;
     }
 
     async run(msg, [selected]) {
@@ -27,10 +25,6 @@ module.exports = class extends Command {
             `Moderator : ${moderator.tag} (${moderator.id})`,
             `Reason    : ${log.reason || `${msg.language.get('COMMAND_CASE_REASON')} '${msg.guild.configs.prefix}reason ${selected}' ${msg.language.get('COMMAND_CASE_CLAIM')}`}`
         ], { code: 'http' });
-    }
-
-    init() {
-        this.provider = this.client.providers.default;
     }
 
 };
