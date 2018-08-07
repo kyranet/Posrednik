@@ -11,18 +11,17 @@ module.exports = class extends Event {
     }
 
     async init() {
-        const { schema } = this.client.gateways.guilds;
         // Folders
-        if (!schema.has('channels')) await schema.add('channels', {});
-        if (!schema.has('roles')) await schema.add('roles', {});
+        if (!this.client.gateways.guilds.schema.has('channels')) await this.client.gateways.guilds.schema.add('channels', {});
+        if (!this.client.gateways.guilds.schema.has('roles')) await this.client.gateways.guilds.schema.add('roles', {});
         // Values
-        if (!schema.has('antiinvite')) await schema.add('antiinvite', { type: 'boolean', default: false });
-        if (!schema.has('modlogs')) await schema.add('modlogs', { type: 'any', array: true });
+        if (!this.client.gateways.guilds.schema.has('antiinvite')) await this.client.gateways.guilds.schema.add('antiinvite', { type: 'boolean', default: false });
+        if (!this.client.gateways.guilds.schema.has('modlogs')) await this.client.gateways.guilds.schema.add('modlogs', { type: 'any', array: true });
         // Channels
-        if (!schema.channels.has('modlog')) await schema.channels.add('modlog', { type: 'TextChannel' });
-        if (!schema.channels.has('announcementChannel')) await schema.channels.add('announcementChannel', { type: 'TextChannel' });
+        if (!this.client.gateways.guilds.schema.channels.has('modlog')) await this.client.gateways.guilds.schema.channels.add('modlog', { type: 'TextChannel' });
+        if (!this.client.gateways.guilds.schema.channels.has('announcementChannel')) await this.client.gateways.guilds.schema.channels.add('announcementChannel', { type: 'TextChannel' });
         // Roles
-        if (!schema.roles.has('announcementRole')) await schema.roles.add('announcementRole', { type: 'Role' });
+        if (!this.client.gateways.guilds.schema.roles.has('announcementRole')) await this.client.gateways.guilds.schema.roles.add('announcementRole', { type: 'Role' });
     }
 
 };
