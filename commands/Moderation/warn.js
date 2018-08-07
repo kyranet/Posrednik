@@ -9,7 +9,7 @@ module.exports = class extends Command {
             permLevel: 2,
             runIn: ['text'],
             description: language => language.get('COMMAND_WARN_DESCRIPTION'),
-            usage: '<member:member> [reason:string] [...]',
+            usage: '<member:member> <reason:string> [...]',
             usageDelim: ' '
         });
     }

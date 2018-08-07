@@ -58,7 +58,7 @@ module.exports = class ModLog {
             .setAuthor(this.moderator.tag, this.moderator.avatar)
             .setColor(ModLog.colour(this.type))
             .setDescription([
-                `**Type**: ${this.type}`,
+                `**Type**: ${this.type[0].toUpperCase() + this.type.slice(1)}`,
                 `**User**: ${this.user.tag} (${this.user.id})`,
                 `**Reason**: ${this.reason || `Use \`${this.guild.configs.prefix}reason ${this.case}\` to claim this log.`}`
             ])
