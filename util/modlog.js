@@ -1,3 +1,4 @@
+const { MessageEmbed } = require('discord.js');
 module.exports = class ModLog {
 
     constructor(guild) {
@@ -54,7 +55,7 @@ module.exports = class ModLog {
     // Here we build the modlog embed
 
     get embed() {
-        const embed = new this.client.methods.Embed()
+        const embed = new MessageEmbed()
             .setAuthor(this.moderator.tag, this.moderator.avatar)
             .setColor(ModLog.colour(this.type))
             .setDescription([
@@ -67,9 +68,11 @@ module.exports = class ModLog {
         return embed;
     }
 
+    // Here we get the case number and create a modlog provider entry
+
     async getCase() {
         this.case = this.guild.configs.modlogs.length;
-        await this.guild.configs.update('modlogs', this.pack);
+        return this.guild.configs.update('modlogs', this.pack);
     }
 
     // Here we pack all the info together

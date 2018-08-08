@@ -11,7 +11,7 @@ const permissionLevels = new PermissionLevels()
     .add(4, (client, msg) => msg.guild && msg.member.permissions.has('BAN_MEMBERS'), { fetch: true })
     .add(6, (client, msg) => msg.guild && msg.member.permissions.has('ADMINISTRATOR'), { fetch: true })
     // These 2 levels define the bot owners permission levels
-    .add(9, (client, msg) => msg.author === client.owner)
+    .add(9, (client, msg) => msg.author === client.owner, { break: true })
     .add(10, (client, msg) => msg.author === client.owner);
 
 // Extends the client with our settings
@@ -19,14 +19,12 @@ class Posrednik extends Client {
 
     constructor() {
         super({
-            clientOptions: {},
             prefix: 'p!',
             commandPrompt: true,
             commandEditing: true,
             // Grabs the newly set permission levels from up top
             permissionLevels
         });
-        this.methods = { Embed: require('discord.js').MessageEmbed };
     }
 
 }
