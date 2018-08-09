@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'warn',
-            permLevel: 2,
+            permLevel: 4,
             runIn: ['text'],
             description: language => language.get('COMMAND_WARN_DESCRIPTION'),
             usage: '<member:member> <reason:string> [...]',
@@ -21,7 +21,7 @@ module.exports = class extends Command {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         }
 
-        if (msg.guild.configs.channels.modlog) {
+        if (msg.guild.settings.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('warn')
                 .setModerator(msg.author)

@@ -5,7 +5,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'case',
-            permLevel: 2,
+            permLevel: 4,
             runIn: ['text'],
             description: language => language.get('COMMAND_CASE_DESCRIPTION'),
             usage: '<case:integer>'
@@ -13,7 +13,7 @@ module.exports = class extends Command {
     }
 
     async run(msg, [selected]) {
-        const log = msg.guild.configs.modlogs[selected];
+        const log = msg.guild.settings.modlogs[selected];
         if (!log) return msg.send(`${msg.language.get('COMMAND_CASE_SORRY')} ${msg.author}, ${msg.language.get('COMMAND_CASE_NO')}`);
 
         const [user, moderator] = await Promise.all([
@@ -23,7 +23,7 @@ module.exports = class extends Command {
         return msg.send([
             `User      : ${user.tag} (${user.id})`,
             `Moderator : ${moderator.tag} (${moderator.id})`,
-            `Reason    : ${log.reason || `${msg.language.get('COMMAND_CASE_REASON')} '${msg.guild.configs.prefix}reason ${selected}' ${msg.language.get('COMMAND_CASE_CLAIM')}`}`
+            `Reason    : ${log.reason || `${msg.language.get('COMMAND_CASE_REASON')} '${msg.guild.settings.prefix}reason ${selected}' ${msg.language.get('COMMAND_CASE_CLAIM')}`}`
         ], { code: 'http' });
     }
 

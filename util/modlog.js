@@ -46,7 +46,7 @@ module.exports = class ModLog {
     // Checks if the modlog channel still exsists if not it throws an error to the console
 
     async send() {
-        const channel = this.guild.channels.get(this.guild.configs.channels.modlog);
+        const channel = this.guild.channels.get(this.guild.settings.channels.modlog);
         if (!channel) throw 'The modlog channel does not exist, did it get deleted?';
         await this.getCase();
         return channel.send({ embed: this.embed });
@@ -61,7 +61,7 @@ module.exports = class ModLog {
             .setDescription([
                 `**Type**: ${this.type[0].toUpperCase() + this.type.slice(1)}`,
                 `**User**: ${this.user.tag} (${this.user.id})`,
-                `**Reason**: ${this.reason || `Use \`${this.guild.configs.prefix}reason ${this.case}\` to claim this log.`}`
+                `**Reason**: ${this.reason || `Use \`${this.guild.settings.prefix}reason ${this.case}\` to claim this log.`}`
             ])
             .setFooter(`Case ${this.case}`)
             .setTimestamp();
@@ -71,8 +71,8 @@ module.exports = class ModLog {
     // Here we get the case number and create a modlog provider entry
 
     async getCase() {
-        this.case = this.guild.configs.modlogs.length;
-        return this.guild.configs.update('modlogs', this.pack);
+        this.case = this.guild.settings.modlogs.length;
+        return this.guild.settings.update('modlogs', this.pack);
     }
 
     // Here we pack all the info together

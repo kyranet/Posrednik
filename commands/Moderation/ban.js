@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'ban',
-            permLevel: 4,
+            permLevel: 5,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
             description: language => language.get('COMMAND_BAN_DESCRIPTION'),
@@ -30,7 +30,7 @@ module.exports = class extends Command {
 
         await msg.guild.members.ban(user, { reason, days });
 
-        if (msg.guild.configs.channels.modlog) {
+        if (msg.guild.settings.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('ban')
                 .setModerator(msg.author)

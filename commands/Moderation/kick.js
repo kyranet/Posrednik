@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'kick',
-            permLevel: 3,
+            permLevel: 4,
             botPerms: ['KICK_MEMBERS'],
             runIn: ['text'],
             description: language => language.get('COMMAND_KICK_DESCRIPTION'),
@@ -26,7 +26,7 @@ module.exports = class extends Command {
 
         await member.kick(reason);
 
-        if (msg.guild.configs.channels.modlog) {
+        if (msg.guild.settings.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('kick')
                 .setModerator(msg.author)

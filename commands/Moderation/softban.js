@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'softban',
-            permLevel: 4,
+            permLevel: 5,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
             description: language => language.get('COMMAND_SOFTBAN_DESCRIPTION'),
@@ -29,7 +29,7 @@ module.exports = class extends Command {
         await msg.guild.members.ban(user, { reason, days });
         await msg.guild.members.unban(user, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
 
-        if (msg.guild.configs.channels.modlog) {
+        if (msg.guild.settings.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('softban')
                 .setModerator(msg.author)
