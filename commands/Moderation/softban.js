@@ -6,33 +6,30 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'softban',
-            permLevel: 4,
+            permLevel: 5,
             botPerms: ['BAN_MEMBERS'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_SOFTBAN_DESCRIPTION'),
-            usage: '<user:user> [reason:string] [...]',
+            description: language => language.get('COMMAND_SOFTBAN_DESCRIPTION'),
+            usage: '<user:user> [days:int{1,7}] [reason:string] [...]',
             usageDelim: ' '
         });
     }
 
-    async run(msg, [user, ...reason]) {
+    async run(msg, [user, days = 1, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
-
         const member = await msg.guild.members.fetch(user).catch(() => null);
-
         // noinspection StatementWithEmptyBodyJS
         if (!member);
-        else if (member.highestRole.position >= msg.member.highestRole.position) {
+        else if (member.roles.highest.position >= msg.member.roles.highest.position) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('POSITION')}`);
         } else if (member.bannable === false) {
             return msg.send(`${msg.language.get('DEAR')} ${msg.author}, ${msg.language.get('COMMAND_BAN_FAIL_BANNABLE')}`);
         }
 
-        await msg.guild.ban(user, { reason, days: 1 });
-        await msg.guild.unban(user, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
+        await msg.guild.members.ban(user, { reason, days });
+        await msg.guild.members.unban(user, `${msg.language.get('COMMAND_SOFTBAN_AUDIT_REASON')}`);
 
-        if (msg.guild.configs.modlog) {
+        if (msg.guild.settings.channels.modlog) {
             new ModLog(msg.guild)
                 .setType('softban')
                 .setModerator(msg.author)
@@ -41,7 +38,7 @@ module.exports = class extends Command {
                 .send();
         }
 
-        return msg.send(`${msg.language.get('COMMAND_SOFTBAN_SUCCESSFULLY')} ${user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
+        return msg.send(`${msg.language.get('COMMAND_SOFTBAN_SUCCESSFULLY')} ${member.user.tag}${reason ? `\n${msg.language.get('REASON')}: ${reason}` : ''}`);
     }
 
 };

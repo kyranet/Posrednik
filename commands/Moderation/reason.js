@@ -6,26 +6,24 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'reason',
-            permLevel: 2,
+            permLevel: 4,
             runIn: ['text'],
             requiredSettings: ['modlog'],
-
-            description: (msg) => msg.language.get('COMMAND_REASON_DESCRIPTION'),
+            description: language => language.get('COMMAND_REASON_DESCRIPTION'),
             usage: '<case:integer> <reason:string> [...]',
             usageDelim: ' '
         });
-
-        this.provider = null;
     }
 
     async run(msg, [selected, ...reason]) {
         reason = reason.length > 0 ? reason.join(' ') : null;
 
-        const modlogs = await this.provider.get('modlogs', msg.guild.id).then(data => data || []);
+        const modlogs = msg.guild.settings.modlogs;
         const log = modlogs[selected];
+
         if (!log) return msg.send(`${msg.language.get('SORRY_DEAR')} ${msg.author}, ${msg.language.get('COMMAND_REASON_CASE')}`);
 
-        const channel = msg.guild.channels.get(msg.guild.configs.modlog);
+        const channel = msg.guild.channels.get(msg.guild.settings.channels.modlog);
         if (!channel) return msg.send(`${msg.language.get('COMMAND_REASON_MODLOG')}`);
 
         const messages = await channel.messages.fetch({ limit: 100 });
@@ -61,16 +59,12 @@ module.exports = class extends Command {
         const oldReason = log.reason;
 
         modlogs[selected].reason = reason;
-        await this.provider.replace('modlogs', msg.guild.id, modlogs);
+        await msg.guild.settings.update('modlogs', modlogs);
 
         return msg.send(`${msg.language.get('COMMAND_REASON_SUCCESS')} ${selected}.${util.codeBlock('http', [
             `Old reason : ${oldReason || 'Not set.'}`,
             `New reason : ${reason}`
         ].join('\n'))}`);
-    }
-
-    init() {
-        this.provider = this.client.providers.get('json');
     }
 
 };

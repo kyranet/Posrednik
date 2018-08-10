@@ -8,8 +8,8 @@ module.exports = class extends Command {
             name: 'subscribe',
             permLevel: 0,
             runIn: ['text'],
-
-            description: 'Subscribe to this servers\' announcements.'
+            description: 'Subscribe to this servers\' announcements.',
+            aliases: ['sub', '+1']
         });
     }
 
@@ -17,7 +17,7 @@ module.exports = class extends Command {
 
     async run(msg) {
         const role = announcement(msg);
-        await msg.member.addRole(role);
+        await msg.member.roles.add(role);
         return msg.send(msg.language.get('COMMAND_SUBSCRIBE_SUCCESS', role.name));
     }
 

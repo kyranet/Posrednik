@@ -5,11 +5,10 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'lockdown',
-            permLevel: 2,
+            permLevel: 4,
             botPerms: ['MANAGE_CHANNELS', 'MANAGE_ROLES'],
             runIn: ['text'],
-
-            description: (msg) => msg.language.get('COMMAND_LOCKDOWN_DESCRIPTION'),
+            description: language => language.get('COMMAND_LOCKDOWN_DESCRIPTION'),
             usage: '<channel:channel>'
         });
     }

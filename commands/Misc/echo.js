@@ -7,7 +7,6 @@ module.exports = class extends Command {
             name: 'echo',
             permLevel: 2,
             runIn: ['text'],
-
             description: 'Send a message to a channel throught Posrednik.',
             usage: '[channel:channel] <message:string> [...]',
             usageDelim: ' '
