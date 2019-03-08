@@ -6,7 +6,8 @@ module.exports = class extends Monitor {
         super(...args, {
             name: 'antiinvite',
             enabled: true,
-            ignoreSelf: true
+            ignoreSelf: true,
+            ignoreOthers: false
         });
     }
 

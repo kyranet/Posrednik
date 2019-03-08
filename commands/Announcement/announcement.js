@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'announcement',
-            permLevel: 2,
+            permissionLevel: 2,
             runIn: ['text'],
             description: 'Send new announcements, mentioning the announcement role.',
             usage: '<string:string>',

@@ -6,8 +6,8 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'ban',
-            permLevel: 5,
-            botPerms: ['BAN_MEMBERS'],
+            permissionLevel: 5,
+            requiredPermissions: ['BAN_MEMBERS'],
             runIn: ['text'],
             description: language => language.get('COMMAND_BAN_DESCRIPTION'),
             usage: '<user:user> [days:int{1,7}] [reason:string] [...]',

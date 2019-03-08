@@ -5,7 +5,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'case',
-            permLevel: 4,
+            permissionLevel: 4,
             runIn: ['text'],
             description: language => language.get('COMMAND_CASE_DESCRIPTION'),
             usage: '<case:integer>'

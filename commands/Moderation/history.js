@@ -5,7 +5,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'history',
-            permLevel: 0,
+            permissionLevel: 0,
             runIn: ['text'],
             description: language => language.get('COMMAND_HISTORY_DESCRIPTION'),
             usage: '<user:user>'
