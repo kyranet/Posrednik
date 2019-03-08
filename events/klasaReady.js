@@ -12,16 +12,18 @@ module.exports = class extends Event {
 
     async init() {
         // Folders
-        if (!this.client.gateways.guilds.schema.has('channels')) await this.client.gateways.guilds.schema.add('channels', {});
-        if (!this.client.gateways.guilds.schema.has('roles')) await this.client.gateways.guilds.schema.add('roles', {});
+        if (!this.client.gateways.guilds.schema.has('channels')) await this.client.gateways.guilds.schema.add('channels', async folder => {
+            // Channels
+            if (!folder.has('modlog')) await folder.add('modlog', 'TextChannel');
+            if (!folder.has('announcementChannel')) await folder.add('announcementChannel', 'TextChannel');
+        });
+        if (!this.client.gateways.guilds.schema.has('roles')) await this.client.gateways.guilds.schema.add('roles', async folder => {
+            // Roles
+            if (!folder.has('announcementRole')) await folder.add('announcementRole', 'Role');
+        });
         // Values
-        if (!this.client.gateways.guilds.schema.has('antiinvite')) await this.client.gateways.guilds.schema.add('antiinvite', { type: 'boolean', default: false });
-        if (!this.client.gateways.guilds.schema.has('modlogs')) await this.client.gateways.guilds.schema.add('modlogs', { type: 'any', array: true });
-        // Channels
-        if (!this.client.gateways.guilds.schema.channels.has('modlog')) await this.client.gateways.guilds.schema.channels.add('modlog', { type: 'TextChannel' });
-        if (!this.client.gateways.guilds.schema.channels.has('announcementChannel')) await this.client.gateways.guilds.schema.channels.add('announcementChannel', { type: 'TextChannel' });
-        // Roles
-        if (!this.client.gateways.guilds.schema.roles.has('announcementRole')) await this.client.gateways.guilds.schema.roles.add('announcementRole', { type: 'Role' });
+        if (!this.client.gateways.guilds.schema.has('antiinvite')) await this.client.gateways.guilds.schema.add('antiinvite', 'boolean', { default: false });
+        if (!this.client.gateways.guilds.schema.has('modlogs')) await this.client.gateways.guilds.schema.add('modlogs', 'any', { array: true });
     }
 
 };
