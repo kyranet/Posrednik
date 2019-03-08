@@ -14,8 +14,11 @@ module.exports = class extends Command {
     }
 
     async run(msg, [channel = msg.channel, ...message]) {
-        if (channel.postable === false) throw msg.language('SYSTEM_CHANNEL_NOT_POSTABLE');
-        return channel.send(message.join(' '));
+        try {
+            channel.sendMessage(message.join(' '));
+        } catch (error) {
+            throw msg.language('SYSTEM_CHANNEL_NOT_POSTABLE');
+        }
     }
 
 };
