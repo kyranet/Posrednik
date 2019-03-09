@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'warn',
-            permLevel: 4,
+            permissionLevel: 4,
             runIn: ['text'],
             description: language => language.get('COMMAND_WARN_DESCRIPTION'),
             usage: '<member:member> <reason:string> [...]',

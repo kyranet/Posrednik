@@ -6,7 +6,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'unsubscribe',
-            permLevel: 0,
+            permissionLevel: 0,
             runIn: ['text'],
             description: 'Unsubscribe to this servers\' announcements.',
             aliases: ['unsub', '-1']

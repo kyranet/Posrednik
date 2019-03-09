@@ -3,22 +3,18 @@ const { Client } = require('klasa');
 const config = require('./config.json');
 
 Client.defaultPermissionLevels
-    .add(4, (client, msg) => msg.guild && msg.member.permissions.has('KICK_MEMBERS'), { fetch: true })
-    .add(5, (client, msg) => msg.guild && msg.member.permissions.has('BAN_MEMBERS'), { fetch: true });
+    .add(4, ({ guild, member }) => guild && member.permissions.has('KICK_MEMBERS'), { fetch: true })
+    .add(5, ({ guild, member }) => guild && member.permissions.has('BAN_MEMBERS'), { fetch: true });
+Client.defaultGuildSchema
+    .add('channels', folder => folder
+        .add('modlog', 'TextChannel')
+        .add('announcementChannel', 'TextChannel'))
+    .add('roles', folder => folder
+        .add('announcementRole', 'Role'))
+    .add('antiinvite', 'boolean', { default: false })
+    .add('modlogs', 'any', { array: true });
 
-// Extends the client with our settings
-class Posrednik extends Client {
-
-    constructor() {
-        super({
-            prefix: 'p!',
-            commandPrompt: true,
-            commandEditing: true
-        });
-    }
-
-}
-
-// Logs the account in
-// noinspection JSIgnoredPromiseFromCall
-new Posrednik().login(config.token);
+new Client({
+    prefix: 'p!',
+    commandEditing: true
+}).login(config.token);

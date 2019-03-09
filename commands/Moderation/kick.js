@@ -6,8 +6,8 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'kick',
-            permLevel: 4,
-            botPerms: ['KICK_MEMBERS'],
+            permissionLevel: 4,
+            requiredPermissions: ['KICK_MEMBERS'],
             runIn: ['text'],
             description: language => language.get('COMMAND_KICK_DESCRIPTION'),
             usage: '<member:member> [reason:string] [...]',

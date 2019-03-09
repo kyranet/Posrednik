@@ -5,8 +5,8 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             name: 'lockdown',
-            permLevel: 4,
-            botPerms: ['MANAGE_CHANNELS', 'MANAGE_ROLES'],
+            permissionLevel: 4,
+            requiredPermissions: ['MANAGE_CHANNELS', 'MANAGE_ROLES'],
             runIn: ['text'],
             description: language => language.get('COMMAND_LOCKDOWN_DESCRIPTION'),
             usage: '<channel:channel>'
@@ -22,8 +22,8 @@ module.exports = class extends Command {
 
     handleLockdown(channel, permission) {
         const permOverwrite = channel.permissionOverwrites.get(channel.guild.defaultRole.id);
-        const locked = permOverwrite ? permOverwrite.denied.has(permission) : false;
-        return channel.overwritePermissions(channel.guild.defaultRole, { [permission]: locked }, locked ? 'Lockdown released.' : 'Lockdown to prevent spam.')
+        const locked = permOverwrite ? permOverwrite.deny.has(permission) : false;
+        return channel.overwritePermissions({ permissionOverwrites: [{ id: channel.guild.defaultRole, deny: ['SEND_MESSAGES'] }], reason: locked ? 'Lockdown released.' : 'Lockdown to prevent spam.' })
             .then(() => !locked);
     }
 

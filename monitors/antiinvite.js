@@ -5,8 +5,7 @@ module.exports = class extends Monitor {
     constructor(...args) {
         super(...args, {
             name: 'antiinvite',
-            enabled: true,
-            ignoreSelf: true
+            ignoreOthers: false
         });
     }
 
@@ -18,14 +17,6 @@ module.exports = class extends Monitor {
         // If it is a invite it deletes it
         return msg.delete()
             .catch(err => this.client.emit('log', err, 'error'));
-    }
-
-    // Here it add the settings key to the guild if its not already present in the schema
-    async init() {
-        if (!this.client.gateways.guilds.schema.has('antiinvite')) {
-            return this.client.gateways.guilds.schema.add('antiinvite', { type: 'Boolean', default: false });
-        }
-        return null;
     }
 
 };

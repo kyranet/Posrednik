@@ -9,7 +9,7 @@
   "author": "Kyra",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "github:hydrabolt/discord.js",
+    "discord.js": "github:discordjs/discord.js",
     "klasa": "github:dirigeants/klasa#master"
   }
 }
