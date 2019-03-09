@@ -19,7 +19,7 @@ module.exports = class extends Command {
         const announcementID = msg.guild.settings.channels.announcementChannel;
         const channel = msg.guild.channels.get(announcementID);
         if (!channel) throw msg.language.get('COMMAND_SUBSCRIBE_NO_CHANNEL');
-        if (channel.postable === false) throw msg.language.get('SYSTEM_CHANNEL_NOT_POSTABLE');
+        if (!channel.postable) throw msg.language.get('SYSTEM_CHANNEL_NOT_POSTABLE');
         const role = announcement(msg);
         await role.edit({ mentionable: true });
         await channel.send(`${msg.language.get('COMMAND_ANNOUNCEMENT', role)}\n${message}`);
