@@ -72,7 +72,9 @@ module.exports = class ModLog {
 
     async getCase() {
         this.case = this.guild.settings.modlogs.length;
-        return this.guild.settings.update('modlogs', this.pack);
+        const { errors } = await this.guild.settings.update('modlogs', this.pack);
+        if (errors.length) throw errors[0];
+        return this.case;
     }
 
     // Here we pack all the info together
