@@ -1,6 +1,6 @@
 # Posrednik
 
-[![Discord](https://discordapp.com/api/guilds/254360814063058944/embed.png)](https://discord.gg/fnreYSV)
+[![Discord](https://discordapp.com/api/guilds/254360814063058944/embed.png)](https://discord.gg/6gakFR2)
 
 Moderation Bot based on [Klasa](https://github.com/dirigeants/klasa).
 
