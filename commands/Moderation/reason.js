@@ -1,4 +1,5 @@
 const { Command, util } = require('klasa');
+const { MessageEmbed } = require('discord.js');
 const ModLog = require('../../util/modlog');
 
 module.exports = class extends Command {
@@ -43,7 +44,7 @@ module.exports = class extends Command {
             ].join('\n');
             await message.edit({ embed });
         } else {
-            const embed = new this.client.methods.Embed()
+            const embed = new MessageEmbed()
                 .setAuthor(log.moderator.tag)
                 .setColor(ModLog.colour(log.type))
                 .setDescription([
