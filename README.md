@@ -4,6 +4,8 @@
 
 Moderation Bot based on [Klasa](https://github.com/dirigeants/klasa).
 
+For a more complete version, check [Skyra](https://github.com/kyranet/Skyra), or invite her to your server [here](https://skyra.pw/invite)!
+
 ## See also:
 
 - [Documentation for klasa: https://klasa.js.org/](https://klasa.js.org/)
